@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="GastosSet" EntityType="Model1.Store.GastosSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CategoriaSet" EntityType="Model1.Store.CategoriaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MonedaSet" EntityType="Model1.Store.MonedaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LugarSet" EntityType="Model1.Store.LugarSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="CategoriaGastos" Association="Model1.Store.CategoriaGastos">
+      <End Role="Categoria" EntitySet="CategoriaSet" />
+      <End Role="Gastos" EntitySet="GastosSet" />
+    </AssociationSet>
+    <AssociationSet Name="MonedaGastos" Association="Model1.Store.MonedaGastos">
+      <End Role="Moneda" EntitySet="MonedaSet" />
+      <End Role="Gastos" EntitySet="GastosSet" />
+    </AssociationSet>
+    <AssociationSet Name="LugarGastos" Association="Model1.Store.LugarGastos">
+      <End Role="Lugar" EntitySet="LugarSet" />
+      <End Role="Gastos" EntitySet="GastosSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="GastosSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Cantidad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CategoriaId" Type="int" Nullable="false" />
+    <Property Name="MonedaId" Type="int" Nullable="false" />
+    <Property Name="LugarId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategoriaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MonedaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LugarSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="CategoriaGastos">
+    <End Role="Categoria" Type="Model1.Store.CategoriaSet" Multiplicity="1" />
+    <End Role="Gastos" Type="Model1.Store.GastosSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Gastos">
+        <PropertyRef Name="CategoriaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MonedaGastos">
+    <End Role="Moneda" Type="Model1.Store.MonedaSet" Multiplicity="1" />
+    <End Role="Gastos" Type="Model1.Store.GastosSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Moneda">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Gastos">
+        <PropertyRef Name="MonedaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LugarGastos">
+    <End Role="Lugar" Type="Model1.Store.LugarSet" Multiplicity="1" />
+    <End Role="Gastos" Type="Model1.Store.GastosSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lugar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Gastos">
+        <PropertyRef Name="LugarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GastosSet" EntityType="Model1.Gastos" />
+          <EntitySet Name="CategoriaSet" EntityType="Model1.Categoria" />
+          <EntitySet Name="MonedaSet" EntityType="Model1.Moneda" />
+          <EntitySet Name="LugarSet" EntityType="Model1.Lugar" />
+          <AssociationSet Name="CategoriaGastos" Association="Model1.CategoriaGastos">
+            <End Role="Categoria" EntitySet="CategoriaSet" />
+            <End Role="Gastos" EntitySet="GastosSet" />
+          </AssociationSet>
+          <AssociationSet Name="MonedaGastos" Association="Model1.MonedaGastos">
+            <End Role="Moneda" EntitySet="MonedaSet" />
+            <End Role="Gastos" EntitySet="GastosSet" />
+          </AssociationSet>
+          <AssociationSet Name="LugarGastos" Association="Model1.LugarGastos">
+            <End Role="Lugar" EntitySet="LugarSet" />
+            <End Role="Gastos" EntitySet="GastosSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Gastos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" />
+          <Property Name="Cantidad" Type="String" Nullable="false" />
+          <NavigationProperty Name="Categoria" Relationship="Model1.CategoriaGastos" FromRole="Gastos" ToRole="Categoria" />
+          <Property Name="CategoriaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Moneda" Relationship="Model1.MonedaGastos" FromRole="Gastos" ToRole="Moneda" />
+          <Property Name="MonedaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Lugar" Relationship="Model1.LugarGastos" FromRole="Gastos" ToRole="Lugar" />
+          <Property Name="LugarId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <NavigationProperty Name="Gastos" Relationship="Model1.CategoriaGastos" FromRole="Categoria" ToRole="Gastos" />
+        </EntityType>
+        <EntityType Name="Moneda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <NavigationProperty Name="Gastos" Relationship="Model1.MonedaGastos" FromRole="Moneda" ToRole="Gastos" />
+        </EntityType>
+        <EntityType Name="Lugar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <NavigationProperty Name="Gastos" Relationship="Model1.LugarGastos" FromRole="Lugar" ToRole="Gastos" />
+        </EntityType>
+        <Association Name="CategoriaGastos">
+          <End Type="Model1.Categoria" Role="Categoria" Multiplicity="1" />
+          <End Type="Model1.Gastos" Role="Gastos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gastos">
+              <PropertyRef Name="CategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MonedaGastos">
+          <End Type="Model1.Moneda" Role="Moneda" Multiplicity="1" />
+          <End Type="Model1.Gastos" Role="Gastos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moneda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gastos">
+              <PropertyRef Name="MonedaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LugarGastos">
+          <End Type="Model1.Lugar" Role="Lugar" Multiplicity="1" />
+          <End Type="Model1.Gastos" Role="Gastos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lugar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gastos">
+              <PropertyRef Name="LugarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="GastosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Gastos)">
+        <MappingFragment StoreEntitySet="GastosSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+          <ScalarProperty Name="MonedaId" ColumnName="MonedaId" />
+          <ScalarProperty Name="LugarId" ColumnName="LugarId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoriaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Categoria)">
+        <MappingFragment StoreEntitySet="CategoriaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MonedaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Moneda)">
+        <MappingFragment StoreEntitySet="MonedaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LugarSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Lugar)">
+        <MappingFragment StoreEntitySet="LugarSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
